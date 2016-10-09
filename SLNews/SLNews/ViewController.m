@@ -59,8 +59,11 @@ static CGFloat const TitlesScrollViewHeight = 44;
 #pragma mark - 选中标题
 - (void)selectButton:(UIButton *)button
 {
+    _selectButton.transform = CGAffineTransformIdentity;
     [_selectButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [button setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
+    // 字体缩放:形变
+    button.transform = CGAffineTransformMakeScale(1.3, 1.3);
     _selectButton = button;
     
     //  标题居中显示
@@ -225,5 +228,48 @@ static CGFloat const TitlesScrollViewHeight = 44;
     // 2.把对应子控制器的view添加上去
     [self setupOneViewController:i];
 }
+
+// 只要一滚动就需要字体渐变
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    // 字体缩放 1.缩放比例 2.缩放哪两个按钮
+    NSInteger i = scrollView.contentOffset.x / [UIScreen mainScreen].bounds.size.width;
+    NSInteger leftI = i;
+    NSInteger rightI = leftI + 1;
+    
+    // 获取左边的按钮
+    UIButton *leftBtn = self.titleButtons[leftI];
+    NSInteger count = self.titleButtons.count;
+    
+    // 获取右边的按钮
+    UIButton *rightBtn;
+    if (rightI < count) {
+        rightBtn = self.titleButtons[rightI];
+    }
+    
+    // 0 ~ 1 =>  1 ~ 1.3
+    CGFloat scaleR =  scrollView.contentOffset.x / [UIScreen mainScreen].bounds.size.width;
+    
+    scaleR -= leftI;
+    
+    CGFloat scaleL = 1 - scaleR;
+    NSLog(@"leftI:%ld scaleL:%f,scaleR:%f",leftI,scaleL,scaleR);
+    // 缩放按钮
+    leftBtn.transform = CGAffineTransformMakeScale(scaleL * 0.3 + 1, scaleL * 0.3 + 1);
+    rightBtn.transform = CGAffineTransformMakeScale(scaleR * 0.3 + 1, scaleR * 0.3 + 1);
+    
+    // 颜色渐变
+    /*
+     颜色:3种颜色通道组成 R:红 G:绿 B:蓝
+     白色: 1 1 1
+     黑色: 0 0 0
+     红色: 1 0 0
+     */
+    UIColor *rightColor = [UIColor colorWithRed:scaleR green:0 blue:0 alpha:1];
+    UIColor *leftColor = [UIColor colorWithRed:scaleL green:0 blue:0 alpha:1];
+    [rightBtn setTitleColor:rightColor forState:UIControlStateNormal];
+    [leftBtn setTitleColor:leftColor forState:UIControlStateNormal];
+}
+
 
 @end
