@@ -19,6 +19,7 @@
 		C4A9D14F1DAA3D53000C743D /* ReaderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C4A9D14E1DAA3D53000C743D /* ReaderViewController.m */; };
 		C4A9D1521DAA3D61000C743D /* ScienceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C4A9D1511DAA3D61000C743D /* ScienceViewController.m */; };
 		C4A9D1551DAA3D6C000C743D /* VideoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C4A9D1541DAA3D6C000C743D /* VideoViewController.m */; };
+		C4A9D1581DAA4146000C743D /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C4A9D1571DAA4146000C743D /* BaseViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +45,8 @@
 		C4A9D1511DAA3D61000C743D /* ScienceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScienceViewController.m; sourceTree = "<group>"; };
 		C4A9D1531DAA3D6C000C743D /* VideoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoViewController.h; sourceTree = "<group>"; };
 		C4A9D1541DAA3D6C000C743D /* VideoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoViewController.m; sourceTree = "<group>"; };
+		C4A9D1561DAA4146000C743D /* BaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
+		C4A9D1571DAA4146000C743D /* BaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,6 +124,8 @@
 				C4A9D1511DAA3D61000C743D /* ScienceViewController.m */,
 				C4A9D1531DAA3D6C000C743D /* VideoViewController.h */,
 				C4A9D1541DAA3D6C000C743D /* VideoViewController.m */,
+				C4A9D1561DAA4146000C743D /* BaseViewController.h */,
+				C4A9D1571DAA4146000C743D /* BaseViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -196,6 +201,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C4A9D1461DAA3D24000C743D /* TopLineViewController.m in Sources */,
+				C4A9D1581DAA4146000C743D /* BaseViewController.m in Sources */,
 				C4A9D1331DAA3615000C743D /* ViewController.m in Sources */,
 				C4A9D1551DAA3D6C000C743D /* VideoViewController.m in Sources */,
 				C4A9D1491DAA3D37000C743D /* HotViewController.m in Sources */,

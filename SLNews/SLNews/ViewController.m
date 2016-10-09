@@ -21,13 +21,16 @@ static CGFloat const TitlesScrollViewHeight = 44;
 @property (nonatomic, weak) UIScrollView *titlesScrollView;
 /** 内容滚动视图 */
 @property (nonatomic, weak) UIScrollView *contentScrollView;
+@property (nonatomic, weak) UIButton *selectButton;
 @end
 
 @implementation ViewController
 
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItem.title = @"头条新闻";
+    self.automaticallyAdjustsScrollViewInsets = NO;
     
     // 1.添加标题滚动视图
     [self setupTitlesScrollView];
@@ -40,6 +43,31 @@ static CGFloat const TitlesScrollViewHeight = 44;
     
     // 4. 添加所有的标题
     [self setupAllTitle];
+}
+
+#pragma mark - 选中标题
+- (void)selectButton:(UIButton *)button
+{
+    [_selectButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [button setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
+    _selectButton = button;
+}
+
+#pragma mark - 处理标题点击
+- (void)titleClick:(UIButton *)button
+{
+    NSInteger i = button.tag;
+    
+    // 1.标题颜色 变成 红色
+    [self selectButton:button];
+    // 2.把对应子控制器的view添加上去
+    UIViewController *vc = self.childViewControllers[i];
+    CGFloat x = i * [UIScreen mainScreen].bounds.size.width;
+    vc.view.frame = CGRectMake(x, 0, [UIScreen mainScreen].bounds.size.width, self.contentScrollView.bounds.size.height);
+    [self.contentScrollView addSubview:vc.view];
+    
+    // 3.内容滚动视图滚动到对应的位置
+    self.contentScrollView.contentOffset = CGPointMake(x, 0);
 }
 
 #pragma mark - 添加标题滚动视图
@@ -55,7 +83,6 @@ static CGFloat const TitlesScrollViewHeight = 44;
 #pragma mark - 添加内容滚动视图
 - (void)setupContentScrollView {
     UIScrollView *contentScrollView = [[UIScrollView alloc] init];
-    contentScrollView.backgroundColor = [UIColor cyanColor];
     CGFloat y = CGRectGetMaxY(self.titlesScrollView.frame);
     contentScrollView.frame = CGRectMake(0, y, self.view.frame.size.width, self.view.frame.size.height - y);
     [self.view addSubview:contentScrollView];
@@ -101,12 +128,20 @@ static CGFloat const TitlesScrollViewHeight = 44;
     CGFloat btnX = 0;
     for (NSInteger i = 0; i < count; i++) {
         UIButton *titleButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        titleButton.tag = i;
         UIViewController *vc = self.childViewControllers[i];
         [titleButton setTitle:vc.title forState:UIControlStateNormal];
         btnX = i * btnW;
         titleButton.frame = CGRectMake(btnX, 0, btnW, btnH);
         [titleButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-        [titleButton setTitleColor:[UIColor orangeColor] forState:UIControlStateHighlighted];
+        
+        // 监听按钮点击
+        [titleButton addTarget:self action:@selector(titleClick:) forControlEvents:UIControlEventTouchUpInside];
+        
+        if (i == 0) {
+            [self titleClick:titleButton];
+        }
+        
         [self.titlesScrollView addSubview:titleButton];
     }
     

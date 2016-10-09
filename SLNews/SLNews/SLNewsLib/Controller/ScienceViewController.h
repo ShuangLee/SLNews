@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BaseViewController.h"
 
-@interface ScienceViewController : UIViewController
+@interface ScienceViewController : BaseViewController
 
 @end

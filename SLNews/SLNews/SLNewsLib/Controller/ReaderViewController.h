@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BaseViewController.h"
 
-@interface ReaderViewController : UIViewController
+@interface ReaderViewController : BaseViewController
 
 @end
