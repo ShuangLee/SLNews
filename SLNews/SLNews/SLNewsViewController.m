@@ -6,17 +6,11 @@
 //  Copyright © 2016年 Ls. All rights reserved.
 //
 
-#import "ViewController.h"
-#import "TopLineViewController.h"
-#import "HotViewController.h"
-#import "ScoietyViewController.h"
-#import "ReaderViewController.h"
-#import "ScienceViewController.h"
-#import "VideoViewController.h"
+#import "SLNewsViewController.h"
 
 static CGFloat const TitlesScrollViewHeight = 44;
 
-@interface ViewController ()<UIScrollViewDelegate>
+@interface SLNewsViewController ()<UIScrollViewDelegate>
 /** 标题滚动视图 */
 @property (nonatomic, weak) UIScrollView *titlesScrollView;
 /** 内容滚动视图 */
@@ -25,9 +19,12 @@ static CGFloat const TitlesScrollViewHeight = 44;
 @property (nonatomic, weak) UIButton *selectButton;
 /** 记录所有的标题按钮 */
 @property (nonatomic, strong) NSMutableArray *titleButtons;
+
+/** 标题设置一次就好 */
+@property (nonatomic, assign) BOOL isInitialize;
 @end
 
-@implementation ViewController
+@implementation SLNewsViewController
 
 - (NSMutableArray *)titleButtons
 {
@@ -48,12 +45,17 @@ static CGFloat const TitlesScrollViewHeight = 44;
     
     // 2.添加内容滚动视图
     [self setupContentScrollView];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
     
-    // 3. 添加所有的子控制器
-    [self setupAllChildViewController];
-    
-    // 4. 添加所有的标题
-    [self setupAllTitle];
+    if (_isInitialize == NO) {
+        // 4.设置所有标题
+        [self setupAllTitle];
+        
+        _isInitialize = YES;
+    }
 }
 
 #pragma mark - 选中标题
@@ -133,34 +135,6 @@ static CGFloat const TitlesScrollViewHeight = 44;
     self.contentScrollView.delegate = self;
 }
 
-#pragma mark - 添加所有的子控制器
-- (void)setupAllChildViewController
-{
-    // 头条
-    TopLineViewController *vc1 = [[TopLineViewController alloc] init];
-    vc1.title = @"头条";
-    [self addChildViewController:vc1];
-    // 热点
-    HotViewController *vc2 = [[HotViewController alloc] init];
-    vc2.title = @"热点";
-    [self addChildViewController:vc2];
-    // 视频
-    VideoViewController *vc3 = [[VideoViewController alloc] init];
-    vc3.title = @"视频";
-    [self addChildViewController:vc3];
-    // 社会
-    ScoietyViewController *vc4 = [[ScoietyViewController alloc] init];
-    vc4.title = @"社会";
-    [self addChildViewController:vc4];
-    // 订阅
-    ReaderViewController *vc5 = [[ReaderViewController alloc] init];
-    vc5.title = @"订阅";
-    [self addChildViewController:vc5];
-    // 科技
-    ScienceViewController *vc6 = [[ScienceViewController alloc] init];
-    vc6.title = @"科技";
-    [self addChildViewController:vc6];
-}
 
 #pragma mark - 添加所有的标题
 - (void)setupAllTitle

@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		C4A9D12D1DAA3615000C743D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C4A9D12C1DAA3615000C743D /* main.m */; };
 		C4A9D1301DAA3615000C743D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C4A9D12F1DAA3615000C743D /* AppDelegate.m */; };
-		C4A9D1331DAA3615000C743D /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C4A9D1321DAA3615000C743D /* ViewController.m */; };
+		C4A9D1331DAA3615000C743D /* SLNewsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C4A9D1321DAA3615000C743D /* SLNewsViewController.m */; };
 		C4A9D1361DAA3615000C743D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C4A9D1341DAA3615000C743D /* Main.storyboard */; };
 		C4A9D1381DAA3615000C743D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C4A9D1371DAA3615000C743D /* Assets.xcassets */; };
 		C4A9D13B1DAA3615000C743D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C4A9D1391DAA3615000C743D /* LaunchScreen.storyboard */; };
@@ -20,6 +20,7 @@
 		C4A9D1521DAA3D61000C743D /* ScienceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C4A9D1511DAA3D61000C743D /* ScienceViewController.m */; };
 		C4A9D1551DAA3D6C000C743D /* VideoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C4A9D1541DAA3D6C000C743D /* VideoViewController.m */; };
 		C4A9D1581DAA4146000C743D /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C4A9D1571DAA4146000C743D /* BaseViewController.m */; };
+		C4A9D15B1DAA5302000C743D /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C4A9D15A1DAA5302000C743D /* ViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,8 +28,8 @@
 		C4A9D12C1DAA3615000C743D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		C4A9D12E1DAA3615000C743D /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		C4A9D12F1DAA3615000C743D /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		C4A9D1311DAA3615000C743D /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		C4A9D1321DAA3615000C743D /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		C4A9D1311DAA3615000C743D /* SLNewsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SLNewsViewController.h; path = ../SLNewsViewController.h; sourceTree = "<group>"; };
+		C4A9D1321DAA3615000C743D /* SLNewsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = SLNewsViewController.m; path = ../SLNewsViewController.m; sourceTree = "<group>"; };
 		C4A9D1351DAA3615000C743D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		C4A9D1371DAA3615000C743D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C4A9D13A1DAA3615000C743D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -47,6 +48,8 @@
 		C4A9D1541DAA3D6C000C743D /* VideoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoViewController.m; sourceTree = "<group>"; };
 		C4A9D1561DAA4146000C743D /* BaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
 		C4A9D1571DAA4146000C743D /* BaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
+		C4A9D1591DAA5302000C743D /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ViewController.h; path = SLNewsLib/ViewController.h; sourceTree = "<group>"; };
+		C4A9D15A1DAA5302000C743D /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ViewController.m; path = SLNewsLib/ViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,8 +85,8 @@
 				C4A9D1421DAA39AE000C743D /* SLNewsLib */,
 				C4A9D12E1DAA3615000C743D /* AppDelegate.h */,
 				C4A9D12F1DAA3615000C743D /* AppDelegate.m */,
-				C4A9D1311DAA3615000C743D /* ViewController.h */,
-				C4A9D1321DAA3615000C743D /* ViewController.m */,
+				C4A9D1591DAA5302000C743D /* ViewController.h */,
+				C4A9D15A1DAA5302000C743D /* ViewController.m */,
 				C4A9D1341DAA3615000C743D /* Main.storyboard */,
 				C4A9D1371DAA3615000C743D /* Assets.xcassets */,
 				C4A9D1391DAA3615000C743D /* LaunchScreen.storyboard */,
@@ -104,6 +107,8 @@
 		C4A9D1421DAA39AE000C743D /* SLNewsLib */ = {
 			isa = PBXGroup;
 			children = (
+				C4A9D1311DAA3615000C743D /* SLNewsViewController.h */,
+				C4A9D1321DAA3615000C743D /* SLNewsViewController.m */,
 				C4A9D1431DAA3D0B000C743D /* Controller */,
 			);
 			path = SLNewsLib;
@@ -202,10 +207,11 @@
 			files = (
 				C4A9D1461DAA3D24000C743D /* TopLineViewController.m in Sources */,
 				C4A9D1581DAA4146000C743D /* BaseViewController.m in Sources */,
-				C4A9D1331DAA3615000C743D /* ViewController.m in Sources */,
+				C4A9D1331DAA3615000C743D /* SLNewsViewController.m in Sources */,
 				C4A9D1551DAA3D6C000C743D /* VideoViewController.m in Sources */,
 				C4A9D1491DAA3D37000C743D /* HotViewController.m in Sources */,
 				C4A9D1521DAA3D61000C743D /* ScienceViewController.m in Sources */,
+				C4A9D15B1DAA5302000C743D /* ViewController.m in Sources */,
 				C4A9D14C1DAA3D46000C743D /* ScoietyViewController.m in Sources */,
 				C4A9D1301DAA3615000C743D /* AppDelegate.m in Sources */,
 				C4A9D14F1DAA3D53000C743D /* ReaderViewController.m in Sources */,
