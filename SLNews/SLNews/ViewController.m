@@ -16,20 +16,31 @@
 
 static CGFloat const TitlesScrollViewHeight = 44;
 
-@interface ViewController ()
+@interface ViewController ()<UIScrollViewDelegate>
 /** 标题滚动视图 */
 @property (nonatomic, weak) UIScrollView *titlesScrollView;
 /** 内容滚动视图 */
 @property (nonatomic, weak) UIScrollView *contentScrollView;
+/** 选中的标题 */
 @property (nonatomic, weak) UIButton *selectButton;
+/** 记录所有的标题按钮 */
+@property (nonatomic, strong) NSMutableArray *titleButtons;
 @end
 
 @implementation ViewController
 
+- (NSMutableArray *)titleButtons
+{
+    if (_titleButtons == nil) {
+        _titleButtons = [NSMutableArray array];
+    }
+    return _titleButtons;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItem.title = @"头条新闻";
+    // iOS7以后,导航控制器中scollView顶部会添加64的额外滚动区域
     self.automaticallyAdjustsScrollViewInsets = NO;
     
     // 1.添加标题滚动视图
@@ -87,6 +98,17 @@ static CGFloat const TitlesScrollViewHeight = 44;
     contentScrollView.frame = CGRectMake(0, y, self.view.frame.size.width, self.view.frame.size.height - y);
     [self.view addSubview:contentScrollView];
     _contentScrollView = contentScrollView;
+    
+    // 设置contentScrollView的属性
+    // 分页
+    self.contentScrollView.pagingEnabled = YES;
+    // 弹簧
+    self.contentScrollView.bounces = NO;
+    // 指示器
+    self.contentScrollView.showsHorizontalScrollIndicator = NO;
+    
+    // 设置代理.目的:监听内容滚动视图 什么时候滚动完成
+    self.contentScrollView.delegate = self;
 }
 
 #pragma mark - 添加所有的子控制器
@@ -138,6 +160,9 @@ static CGFloat const TitlesScrollViewHeight = 44;
         // 监听按钮点击
         [titleButton addTarget:self action:@selector(titleClick:) forControlEvents:UIControlEventTouchUpInside];
         
+        // 把标题按钮保存到对应的数组
+        [self.titleButtons addObject:titleButton];
+        
         if (i == 0) {
             [self titleClick:titleButton];
         }
@@ -147,6 +172,39 @@ static CGFloat const TitlesScrollViewHeight = 44;
     
     // 设置标题的滚动范围
     self.titlesScrollView.contentSize = CGSizeMake(count * btnW, 0);
+    // 设置内容的滚动范围
+    self.contentScrollView.contentSize = CGSizeMake(count * [UIScreen mainScreen].bounds.size.width, 0);
+}
+
+#pragma mark - 添加一个子控制器的View
+- (void)setupOneViewController:(NSInteger)i
+{
+    
+    UIViewController *vc = self.childViewControllers[i];
+    if (vc.view.superview) {
+        return;
+    }
+    CGFloat x = i * [UIScreen mainScreen].bounds.size.width;
+    vc.view.frame = CGRectMake(x, 0, [UIScreen mainScreen].bounds.size.width, self.contentScrollView.bounds.size.height);
+    [self.contentScrollView addSubview:vc.view];
+}
+
+
+#pragma mark - UIScrollViewDelegate
+// 滚动完成的时候调用
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
+{
+    // 获取当前角标
+    NSInteger i = scrollView.contentOffset.x / [UIScreen mainScreen].bounds.size.width;
+    
+    // 获取标题按钮
+    UIButton *titleButton = self.titleButtons[i];
+    
+    // 1.选中标题
+    [self selectButton:titleButton];
+    
+    // 2.把对应子控制器的view添加上去
+    [self setupOneViewController:i];
 }
 
 @end
