@@ -62,6 +62,25 @@ static CGFloat const TitlesScrollViewHeight = 44;
     [_selectButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [button setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
     _selectButton = button;
+    
+    //  标题居中显示
+    [self setupTitleCenter:button];
+}
+
+#pragma mark - 标题居中
+- (void)setupTitleCenter:(UIButton *)button {
+    // 本质:修改titleScrollView偏移量
+    CGFloat offsetX = button.center.x - [UIScreen mainScreen].bounds.size.width * 0.5;
+    if (offsetX < 0) {
+        offsetX = 0;
+    }
+    
+    CGFloat maxOffsetX = self.titlesScrollView.contentSize.width - [UIScreen mainScreen].bounds.size.width;
+    if (offsetX > maxOffsetX) {
+        offsetX = maxOffsetX;
+    }
+    
+    [self.titlesScrollView setContentOffset: CGPointMake(offsetX, 0) animated:YES];
 }
 
 #pragma mark - 处理标题点击
